@@ -49,6 +49,16 @@ declare module '@supabase/supabase-js' {
     aud: string;
     created_at: string;
   }
+
+  export interface SupabaseClient {
+    auth: {
+      getUser(): Promise<{ data: { user: User | null } }>;
+      signOut(): Promise<{ error: Error | null }>;
+    };
+    // Добавьте другие необходимые методы по мере необходимости
+  }
+
+  export function createClient(supabaseUrl: string, supabaseKey: string): SupabaseClient;
 }
 
 // Объявление типов для ImportMeta
